@@ -2,6 +2,7 @@
 let listaDeAmigos = []
 let lista = document.querySelector(".name-list")
 let amigo = document.querySelector(".input-name")
+let btnSorteo = document.querySelector(".button-draw")
 
 /* function agregarAmigo (){
     lista.innerHTML = ""
@@ -29,6 +30,8 @@ let amigo = document.querySelector(".input-name")
 // Refactorizando la funcion de agregar amigos
 
 function agregarAmigo(){
+    validaroDeSorteo()
+    
     if(validarNombre(amigo.value)){
         if(listaDeAmigos.length<5){
             lista.innerHTML = "";    
@@ -47,7 +50,9 @@ function agregarAmigo(){
     
         amigo.value=""; 
     }   else{
-        console.log("El nombre no es valido solo letras de el alfabeto seran admitidas tampoco los espacios seran permitidos")
+      //  console.log("El nombre no es valido solo letras de el alfabeto seran admitidas tampoco los espacios seran permitidos")
+
+        alert("El nombre no es valido solo letras de el alfabeto seran admitidas tampoco los espacios seran permitidos")
     }
 }
 
@@ -55,5 +60,19 @@ function validarNombre (nombre){
     const regex = /^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ'-]{2,50}$/;
   return regex.test(nombre);
 }
+
+//El boton de sortear amigo solo estara abilitado cuando tengas dos o mas amigos listados
+
+function validadorDeSorteo(){
+    if(listaDeAmigos.length < 1){
+        btnSorteo.disabled = true
+
+    } else{
+        btnSorteo.disabled = false
+    }
+}
+
+
+validadorDeSorteo()
 
 //console.log(validarNombre("Satoru"))
